@@ -33,18 +33,22 @@ namespace NEAproject.Controllers
         public ActionResult Index(homemodel homemodel, bool? loginsuccess = false, string Save = null)
             //ActionResult adds another task to render the page on the browser in this instance. bridge between CSS/HTML page and browser
         {
+            bool valid = true;
             //to the code
             if (homemodel.selectcomplexity == "getLineardatapoints")
             {
                 ViewBag.datapointlist = JsonConvert.SerializeObject(Helper.getLineardatapoints(homemodel.valueofn));
+                valid = Helper.isvalidint(homemodel.valueofn.ToString());
             }
             else if (homemodel.selectcomplexity == "getNtothe2points")
             {
                 ViewBag.datapointlist = JsonConvert.SerializeObject(Helper.getNtothe2points(homemodel.valueofn));
+                valid = Helper.isvalidint(homemodel.valueofn.ToString());
             }
             else if (homemodel.selectcomplexity == "get2totheNpoints")
             {
                 ViewBag.datapointlist = JsonConvert.SerializeObject(Helper.get2totheNpoints(homemodel.valueofn));
+                valid = Helper.isvalidint(homemodel.valueofn.ToString());
             }
             else
             {
@@ -70,6 +74,7 @@ namespace NEAproject.Controllers
 
                 ViewBag.datapointlist = JsonConvert.SerializeObject(datapointlist);
             }
+            ViewBag.validint = valid;
 
             
             

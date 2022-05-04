@@ -7,6 +7,26 @@ namespace NEAproject
 {
     public class Helper
     {
+        public static bool isvalidint(string input)
+        {
+            int value;
+            if(int.TryParse(input, out value))
+            {
+                if(value == 0)
+                {
+                    return false;
+                }
+                else
+                {
+                    return true;
+                }
+                
+            }
+            else
+            {
+                return false;
+            }
+        }
         public static List<datapoint> getLineardatapoints(int n)
         {
             List<datapoint> result = new List<datapoint>();
